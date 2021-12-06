@@ -1,0 +1,56 @@
+<div class="dispositivos">
+    <div class="input-div">
+        <button (click)="onCreationProcessStarted()" class="btn btn-light" >
+            <span class="material-icons">add</span>
+        </button>
+        <input [(ngModel)]="nameReceived" type="text" class="form-control"  placeholder="Nome" aria-label="name" aria-describedby="basic-addon1">
+      </div>
+         <ul class="dispositivosList">
+
+            <li class="novo dispositivoItem floating" *ngIf="criandoDispositivo">
+                <span class="disp-icon material-icons">
+                    pending
+                 </span>
+                 <button (click)="onCreationFinished()" class="btn btn-light close" >
+                    <span class="material-icons">close</span>
+                </button>
+                  <h3> 
+                      <input [class.red_alert]="redAlert" [(ngModel)]="objDispositivo.nome" type="text" placeholder="Nome" class="form-control">
+                </h3> 
+                     <div class="form-group">
+                       <select [class.red_alert]="redAlert" [(ngModel)]="objDispositivo.tipo" class="form-control" id="tiposDisponiveis">
+                         <option *ngFor="let tipo of tiposLista">{{tipo}}</option>
+                       </select>
+                     </div>
+                 
+                 <button (click)="onCreating()" class="btn btn-info">
+                    Salvar
+                    </button>
+                    
+
+            </li>
+        <li class="dispositivoItem" *ngFor="let dispositivo of obterDispositivos()" >
+            <span class="disp-icon material-icons">
+               {{ dispositivo.icon }}
+            </span>
+             <h3>
+                 {{ dispositivo.nome }}
+            </h3> 
+            <p>
+                {{ dispositivo.tipo }}
+            </p>
+            <label class="switch">
+                <input (click)="mudarEstadoDispositivo(dispositivo)" type="checkbox" [checked]="dispositivo.ligado">
+                <span class="slider ound"></span>
+            </label>
+            {{ dispositivo.ligado? 'Ligado' : 'Desligado' }}
+            <button (click)="onDeletion(dispositivo)" class="btn btn-light delete">
+                <span class="material-icons">delete</span>
+            </button>
+        </li>
+
+
+    </ul>
+</div>
+
+    

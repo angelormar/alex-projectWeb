@@ -1,0 +1,23 @@
+/* deixa o fundo da pagina gradiente azul claro */
+body {
+    color: white;
+    width: 100%;
+    height: 1000px;
+    background: linear-gradient(160deg, rgb(90,90,200) 0, #d1dff1 100%) !important;
+}
+
+nav{
+    margin-bottom: 5vh;
+}
+
+@media (min-width: 768px) {
+    .navbar-brand.abs
+        {
+            position: absolute;
+            width: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+    }
+    
