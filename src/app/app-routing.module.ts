@@ -1,11 +1,11 @@
-import { LoginComponentComponent } from './login-component/login-component.component';
-import { DispositivosComponent } from './dispositivos/dispositivos.component';
+import { MeusDispositivosComponent } from './clientes/meus-dispositivos/meus-dispositivos.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponentComponent},
-  {path: '', component: DispositivosComponent},
+ // {path: 'login', component: LoginComponentComponent},
+ // {path: '', component: DispositivosComponent},
+  {path: '', component: MeusDispositivosComponent},
 ];
 
 @NgModule({

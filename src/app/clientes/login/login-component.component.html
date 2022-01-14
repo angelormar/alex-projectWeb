@@ -3,16 +3,16 @@
         <div class="form">
             <h2 class="text-center">Entrar</h2>       
             <div class="form-group">
-                <input type="text" id="name" name="name"  class="form-control" placeholder="Nome de usuário" required="required" [(ngModel)]="user.name">
+                <input type="text" id="name" name="name"  class="form-control" placeholder="Nome de usuário" required="required" [(ngModel)]="user.user">
             </div>
             <div class="form-group">
-                <input type="password" id="pass" name="pass" class="form-control" placeholder="Senha" required="required" [(ngModel)]="user.password">
+                <input type="password" id="pass" name="pass" class="form-control" placeholder="Senha" required="required" [(ngModel)]="user.senha">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Entrar</button>
             </div>
             
         </div>
-        <p class="text-center"><a href="#">Criar uma conta (em breve)</a></p>
+        <p class="text-center"><a routerLink="/novaConta">Criar uma conta (em breve)</a></p>
     </div>
 </form>

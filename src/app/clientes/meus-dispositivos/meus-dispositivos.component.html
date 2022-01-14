@@ -19,7 +19,7 @@
                 </h3> 
                      <div class="form-group">
                        <select [class.red_alert]="redAlert" [(ngModel)]="objDispositivo.tipo" class="form-control" id="tiposDisponiveis">
-                         <option *ngFor="let tipo of tiposLista">{{tipo}}</option>
+                         <option *ngFor="let tipo of tiposLista" value="{{tipo.id}}">{{tipo.nome}}</option>
                        </select>
                      </div>
                  
@@ -31,16 +31,16 @@
             </li>
         <li class="dispositivoItem" *ngFor="let dispositivo of obterDispositivos()" >
             <span class="disp-icon material-icons">
-               {{ dispositivo.icon }}
+               {{ dispositivo.tipo.icon }}
             </span>
              <h3>
                  {{ dispositivo.nome }}
             </h3> 
             <p>
-                {{ dispositivo.tipo }}
+                {{ dispositivo.tipo.nome }}
             </p>
             <label class="switch">
-                <input (click)="mudarEstadoDispositivo(dispositivo)" type="checkbox" [checked]="dispositivo.ligado">
+                <input (click)="mudaEstadoDispositivo(dispositivo)" type="checkbox" [checked]="dispositivo.ligado">
                 <span class="slider ound"></span>
             </label>
             {{ dispositivo.ligado? 'Ligado' : 'Desligado' }}

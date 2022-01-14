@@ -1,5 +1,7 @@
+import { Cliente } from './../../shared/model/Cliente';
 import { Component, OnInit } from '@angular/core';
 import{ FormsModule } from '@angular/forms';
+import { ClientesService } from 'src/app/shared/service/clientes.service';
 
 @Component({
   selector: 'app-login-component',
@@ -8,24 +10,18 @@ import{ FormsModule } from '@angular/forms';
 })
 export class LoginComponentComponent implements OnInit {
 
-  users = [
-    { name: 'admin', password: 'admin' },
-    { name: 'user', password: '1234' },
-  ];
-  user = {
-    name: '',
-    password: ''
-  };
+  users: Cliente[] = ClientesService.getClientes();
+  user: Cliente = new Cliente();
 
   onSubmit(form : any) {
     //essa função vai validar o login e a senha do usuário
     //e retornar true ou false
-    const user = this.users.find(u => u.name === form.value.name);
+    const user = this.users.find(u => u.user === form.value.name);
     if (!user) {
       alert('Usuário não encontrado');
       return false;
     }
-    if (user.password !== form.value.pass) {
+    if (user.senha !== form.value.pass) {
       alert('Senha incorreta');
       return false;
     }

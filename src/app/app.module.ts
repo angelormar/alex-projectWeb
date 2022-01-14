@@ -4,24 +4,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ClientesRoutingModule } from './clientes/clientes-routing.module';
 
 import { MaterializeButtonModule, MaterializeCardModule } from 'materialize-angular';
-import { DispositivosComponent } from './dispositivos/dispositivos.component';
-import { LoginComponentComponent } from './login-component/login-component.component';
-import { AlertOutFocusDirective } from './shared/alert-out-focus.directive';
+import { NovaContaComponent } from './clientes/nova-conta/nova-conta.component';
+import { LoginComponentComponent } from './clientes/login/login-component.component';
+import { MeusDispositivosComponent } from './clientes/meus-dispositivos/meus-dispositivos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DispositivosComponent,
     LoginComponentComponent,
-    AlertOutFocusDirective
+    MeusDispositivosComponent,
+    NovaContaComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    ClientesRoutingModule,
     MaterializeButtonModule,
     MaterializeCardModule
   ],
