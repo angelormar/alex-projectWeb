@@ -1,4 +1,4 @@
-<div class="dispositivos">
+<div class="dispositivos">  
     <div class="input-div">
         <button (click)="onCreationProcessStarted()" class="btn btn-light" >
             <span class="material-icons">add</span>
@@ -18,7 +18,7 @@
                       <input [class.red_alert]="redAlert" [(ngModel)]="objDispositivo.nome" type="text" placeholder="Nome" class="form-control">
                 </h3> 
                      <div class="form-group">
-                       <select [class.red_alert]="redAlert" [(ngModel)]="objDispositivo.tipo" class="form-control" id="tiposDisponiveis">
+                       <select [class.red_alert]="redAlert" [(ngModel)]="objDispositivo.idtipo" class="form-control" id="tiposDisponiveis">
                          <option *ngFor="let tipo of tiposLista" value="{{tipo.id}}">{{tipo.nome}}</option>
                        </select>
                      </div>
@@ -29,7 +29,7 @@
                     
 
             </li>
-        <li class="dispositivoItem" *ngFor="let dispositivo of obterDispositivos()" >
+        <li class="dispositivoItem {{deleteState.state && deleteState.id == dispositivo.id ? 'fadeOut' : ''}}" *ngFor="let dispositivo of obterDispositivos()" >
             <span class="disp-icon material-icons">
                {{ dispositivo.tipo.icon }}
             </span>
@@ -40,10 +40,10 @@
                 {{ dispositivo.tipo.nome }}
             </p>
             <label class="switch">
-                <input (click)="mudaEstadoDispositivo(dispositivo)" type="checkbox" [checked]="dispositivo.ligado">
+                <input (click)="mudaEstadoDispositivo(dispositivo)" type="checkbox" [checked]="dispositivo.ligado == 'S'">
                 <span class="slider ound"></span>
             </label>
-            {{ dispositivo.ligado? 'Ligado' : 'Desligado' }}
+            {{ dispositivo.ligado == 'S'? 'Ligado' : 'Desligado' }}
             <button (click)="onDeletion(dispositivo)" class="btn btn-light delete">
                 <span class="material-icons">delete</span>
             </button>

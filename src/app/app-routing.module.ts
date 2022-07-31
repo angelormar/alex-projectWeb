@@ -5,7 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
  // {path: 'login', component: LoginComponentComponent},
  // {path: '', component: DispositivosComponent},
-  {path: '', component: MeusDispositivosComponent},
+ 
+  {
+  path: '',
+  loadChildren: ()=> import('./clientes/clientes-routing.module').then(m=> m.ClientesRoutingModule),
+  },
 ];
 
 @NgModule({

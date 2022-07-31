@@ -1,7 +1,9 @@
-import { Cliente } from './../../shared/model/Cliente';
+import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
-import{ FormsModule } from '@angular/forms';
-import { ClientesService } from 'src/app/shared/service/clientes.service';
+import{ FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Cliente } from 'src/app/shared/model/Cliente';
+import { LoginService } from 'src/app/shared/service/login.service';
 
 @Component({
   selector: 'app-login-component',
@@ -10,28 +12,31 @@ import { ClientesService } from 'src/app/shared/service/clientes.service';
 })
 export class LoginComponentComponent implements OnInit {
 
-  users: Cliente[] = ClientesService.getClientes();
-  user: Cliente = new Cliente();
+  formLogin = this.formBuilder.group(
+    {
+      login: this.formBuilder.control('',[Validators.required, Validators.minLength(3)]),
+      senha: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
+    });
 
-  onSubmit(form : any) {
-    //essa função vai validar o login e a senha do usuário
-    //e retornar true ou false
-    const user = this.users.find(u => u.user === form.value.name);
-    if (!user) {
-      alert('Usuário não encontrado');
-      return false;
+  constructor(private router: Router, private formBuilder: FormBuilder, private loginService: LoginService, private app : AppComponent) { }
+
+
+  ngOnInit(): void {  }
+  
+  logar() {
+    if(this.formLogin.valid){
+
+      let login = this.formLogin.value.login;
+      let senha = this.formLogin.value.senha;
+
+      this.loginService.login(new Cliente(0, '', login, senha, '','')).subscribe( u=> {
+        this.loginService.setarUsuarioLogado(u);
+        this.app.changeAppState();
+        this.router.navigate(['/meusDispositivos']);
+      });
+      }else{
+        alert('Login ou senha inválidos');
+      }
     }
-    if (user.senha !== form.value.pass) {
-      alert('Senha incorreta');
-      return false;
-    }
-    alert('Login efetuado com sucesso');
-    return true;
-  }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

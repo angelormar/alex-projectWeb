@@ -1,52 +1,33 @@
+import { Cliente } from 'src/app/shared/model/Cliente';
 import { Tipo } from './../model/Tipo';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TiposService {
-
-  public static getTipos(){
-      let tipos : Tipo [] = [];
-      tipos = [{
-        id : 1,
-        nome : 'Ar Condicionado ',
-        icon : 'ac_unit'
-      },
-      {
-        id : 2,
-        nome : 'Lâmpada',
-        icon : 'tungsten'
-      },
-      {
-        id : 3,
-        nome : 'Tomada',
-        icon : 'outlet'
-      },
-      {
-        id : 4,
-        nome : 'Som',
-        icon : 'speaker_group'
-      },
-      {
-        id : 5,
-        nome : 'Televisão',
-        icon : 'connected_tv'
-      },
-      {
-        id : 6,
-        nome : 'Outros',
-        icon : 'more_horiz'
-      }];
-      return tipos!;
+  
+  private readonly API_URL = 'http://localhost:8080/';
+  
+  getTipos(): Observable<Tipo[]>{
+    //return a post request
+    return this.http.get<Tipo[]>(this.API_URL + 'tipos');
+  }
+  
+  getTipoById(idtipo : number): Observable<Tipo>{
+    //return a get request to the server with the idtipo
+    return this.http.get<Tipo>(this.API_URL + 'tipo/' + idtipo);
+  }
+  
+  newTipo(tipo: Tipo): Observable<Tipo> {
+    return this.http.post<Tipo>(this.API_URL + 'tipo/cadastrar', tipo);
   }
 
-  public static getTipoById(id: number){
-    let tipos : Tipo [] = [];
-    tipos = this.getTipos();
-    return tipos.find(t => t.id === id)!;
+  deleteTipo(tipo: Number): Observable<Number> {
+        return this.http.post<Number>(this.API_URL + 'tipo/deletar' , tipo);
   }
 
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 }

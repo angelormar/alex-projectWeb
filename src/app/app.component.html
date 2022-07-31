@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Hello, world!</title>
   </head>
-  <body>
+  <body>  
+ <div *ngIf="loadState" class="lds-ripple"><div></div><div></div></div> 
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-transparent justify-content-center">
         <a class="navbar-brand abs" routerLink="/">Alex Smart Home</a>
@@ -20,8 +21,11 @@
         <div class="navbar-collapse collapse" id="collapsingNavbar">
             <ul class="navbar-nav">
                 <li routerLinkActive="active" class="nav-item">
-                    <a class="nav-link" routerLink="/login">Login</a>
+                    <a class="nav-link" (click)="logout()" routerLink="login">{{ logState ? 'Logout' : 'Login'}}</a>
                 </li>
+                <li class="nav-item">
+                  <a *ngIf="admState" class="nav-link" routerLink="cadastro-tipos">Cadastro de Tipos</a>
+              </li>
             </ul>
         </div>
     </nav>
@@ -33,6 +37,7 @@
         <router-outlet></router-outlet>
       </div>  
     </main>
+    
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -44,5 +49,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+ 
   </body>
 </html>

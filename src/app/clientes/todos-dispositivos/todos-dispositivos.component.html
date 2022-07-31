@@ -1,0 +1,30 @@
+<div class="dispositivos">
+    <div class="input-div">
+        <input [(ngModel)]="nameReceived" type="text" class="form-control"  placeholder="Nome" aria-label="name" aria-describedby="basic-addon1">
+      </div>
+         <ul class="dispositivosList">
+        <li class="dispositivoItem {{deleteState.state && deleteState.id == dispositivo.id ? 'fadeOut' : ''}}" *ngFor="let dispositivo of obterDispositivos()" >
+            <span class="disp-icon material-icons">
+               {{ dispositivo.tipo.icon }}
+            </span>
+             <h3>
+                 {{ dispositivo.nome }}
+            </h3> 
+            <p>
+                {{ dispositivo.tipo.nome }}
+            </p>
+            <label class="switch">
+                <input (click)="mudaEstadoDispositivo(dispositivo)" type="checkbox" [checked]="dispositivo.ligado == 'S'">
+                <span class="slider ound"></span>
+            </label>
+            {{ dispositivo.ligado == 'S'? 'Ligado' : 'Desligado' }}
+            <button (click)="onDeletion(dispositivo)" class="btn btn-light delete">
+                <span class="material-icons">delete</span>
+            </button>
+        </li>
+
+
+    </ul>
+</div>
+
+    

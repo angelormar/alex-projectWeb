@@ -1,0 +1,45 @@
+<div class="dispositivos">
+    <div class="input-div">
+        <button (click)="onCreationProcessStarted()" class="btn btn-light" >
+            <span class="material-icons">add</span>
+        </button>
+        <input [(ngModel)]="nameReceived" type="text" class="form-control"  placeholder="Nome" aria-label="name" aria-describedby="basic-addon1">
+      </div>
+         <ul class="dispositivosList">
+
+            <li class="novo dispositivoItem floating" *ngIf="criandoTipo">
+                 <button (click)="onCreationFinished()" class="btn btn-light close" >
+                    <span class="material-icons">close</span>
+                </button>
+                  <h3> 
+                      <input [class.red_alert]="redAlert" [(ngModel)]="objTipo.nome" type="text" placeholder="Nome do Tipo" class="form-control">
+                </h3> 
+                     <div class="form-group">
+                        <h3> 
+                            <input [class.red_alert]="redAlert" [(ngModel)]="objTipo.icon" type="text" placeholder="Código do ícone" class="form-control">
+                      </h3> 
+                     </div>
+                 
+                 <button (click)="onCreating()" class="btn btn-info">
+                    Salvar
+                    </button>
+                    
+
+            </li>
+        <li class="dispositivoItem" *ngFor="let tipo of obterTipos()" >
+            <span class="disp-icon material-icons">
+               {{ tipo.icon }}
+            </span>
+             <h3>
+                 {{ tipo.nome }}
+            </h3> 
+            <button (click)="onDeletion(tipo)" class="btn btn-light delete">
+                <span class="material-icons">delete</span>
+            </button>
+        </li>
+
+
+    </ul>
+</div>
+
+    
